@@ -1,0 +1,17 @@
+{
+    "python.defaultInterpreterPath": "/workspaces/decluttr/decluttr-app/backend/.venv/bin/python",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.analysis.extraPaths": [
+        "/workspaces/decluttr/decluttr-app/backend"
+    ],
+    "python.testing.unittestEnabled": true,
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "/workspaces/decluttr/decluttr-app/backend/tests",
+        "-p",
+        "test_*.py"
+    ],
+    "notebook.output.wordWrap": false
+}
