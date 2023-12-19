@@ -1,40 +1,43 @@
 {
-  "name": "decluttr-app",
+  "name": "frontend",
   "version": "0.1.0",
-  "scripts": {
-    "dev": "NEXT_PUBLIC_CHAT_API=http://localhost:8000/api/chat next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+  "private": true,
   "dependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
-    "ai": "^2.2.27",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^1.2.1",
-    "dotenv": "^16.3.1",
-    "llamaindex": "0.0.38",
-    "lucide-react": "^0.294.0",
-    "next": "^14.0.3",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-markdown": "^8.0.7",
-    "react-syntax-highlighter": "^15.5.0",
-    "remark": "^14.0.3",
-    "remark-code-import": "^1.2.0",
-    "remark-gfm": "^3.0.1",
-    "remark-math": "^5.1.1",
-    "supports-color": "^9.4.0",
-    "tailwind-merge": "^2.1.0"
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@types/node": "^20.10.3",
-    "@types/react": "^18.2.42",
-    "@types/react-dom": "^18.2.17",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
-    "tailwindcss": "^3.3.6",
-    "typescript": "^5.3.2",
-    "@types/react-syntax-highlighter": "^15.5.11"
+    "tailwindcss": "^3.3.7"
   }
 }
