@@ -5,13 +5,13 @@ import logging
 import os
 import uvicorn
 from app.api.routers.chat import chat_router
+from app.api.routers.item import item_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
 environment = os.getenv("ENVIRONMENT", "dev")  # Default to 'development' if not set
-
 
 if environment == "dev":
     logger = logging.getLogger("uvicorn")
@@ -25,7 +25,7 @@ if environment == "dev":
     )
 
 app.include_router(chat_router, prefix="/api/chat")
-
+app.include_router(item_router, prefix="/api/item")
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", host="0.0.0.0", reload=True)
