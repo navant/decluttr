@@ -46,4 +46,4 @@ async def describe_item(request: ItemDescribeRequest):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=itemDescribeResponse.error_message,
         )
-    return JSONResponse(content=itemDescribeResponse)
+    return JSONResponse(content=itemDescribeResponse.dict())
