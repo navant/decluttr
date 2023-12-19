@@ -6,7 +6,7 @@ from app.utils.json import json_to_model
 from app.utils.index import get_index
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from llama_index import VectorStoreIndex
-from llama_index.llms.base import MessageRole, ChatMessage
+from llama_index.llms import MessageRole, ChatMessage
 from pydantic import BaseModel
 
 chat_router = r = APIRouter()
