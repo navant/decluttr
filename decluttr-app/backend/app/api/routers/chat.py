@@ -11,7 +11,6 @@ from pydantic import BaseModel
 
 chat_router = r = APIRouter()
 
-
 class _Message(BaseModel):
     role: MessageRole
     content: str
