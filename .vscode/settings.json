@@ -13,5 +13,6 @@
         "-p",
         "test_*.py"
     ],
-    "notebook.output.wordWrap": false
+    "notebook.output.wordWrap": false,
+    "python.analysis.autoImportCompletions": true
 }
