@@ -14,27 +14,13 @@ item_router = r = APIRouter()
 
 @r.post("/describe")
 async def describe_item(request: ItemDescribeRequest, service:GeminiService = Depends(GeminiService)):
-    # TrueLens
-
-    
-    # print('--- set up truelens recorder ---')
-    # trulens_measures = TruLensMeasures()
-    # tru_recorder = TruCustomApp(service.get_image_description,
-    #                 app_id = 'Decluttr v1',
-    #                 feedbacks = [trulens_measures.f_qa_relevance])
     
     print('--------------call gemini service----------------------')
-    # with tru_recorder as recording:
-    #     # error here /workspaces/decluttr/decluttr-app/backend/.venv/lib/python3.11/site-packages/trulens_eval/app.py
     itemDescribeResponse = service.get_image_description(request.image)
-
-    # tru_record = recording.records[0]
-    # print('--------- tru_record --------------')
-    # print(tru_record)
 
     if itemDescribeResponse.error_message:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=itemDescribeResponse.error_message,
         )
-    return JSONResponse(content=itemDescribeResponse.dict())
+    return JSONResponse(content=itemDescribeResponse.model_dump())

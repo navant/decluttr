@@ -2,7 +2,6 @@ from llama_index.multi_modal_llms.gemini import GeminiMultiModal
 from llama_index.program import MultiModalLLMCompletionProgram
 from llama_index.output_parsers import PydanticOutputParser
 from llama_index.schema import ImageDocument, ImageType
-from pydantic import BaseModel
 import base64
 from io import BytesIO
 from app.utils.schema import Item, Image, ItemDescribeResponse
@@ -12,9 +11,6 @@ from supabase import create_client, Client
 
 from trulens_eval.tru_custom_app import instrument
 from trulens_eval import TruCustomApp
-from trulens_eval import Feedback, Select
-from trulens_eval.feedback import Groundedness
-from trulens_eval.feedback.provider.openai import OpenAI as fOpenAI
 from app.api.services.trulens_service import TruLensMeasures
 from trulens_eval import TruCustomApp
 from trulens_eval import tru
@@ -51,45 +47,6 @@ class CustomImageDocument(ImageDocument):
         else:
             # Fallback to the original method if no custom processing is required
             return super().resolve_image()
-        
-class CustomMultiModalLLMCompletionProgram(MultiModalLLMCompletionProgram):
-    """
-    Custom LLM Completion Program.
-
-    This class extends the MultiModalLLMCompletionProgram with a custom __call__ method.
-    """
-    def __call__(self, *args, **kwargs) -> BaseModel:
-
-        print("MultiModalLLMCompletionProgram : Custom __call__ method invoked.")
-
-        # methods_to_instrument = {
-        #     self._multi_modal_llm.complete: self._multi_modal_llm.complete,
-        #     # other methods
-        # }
-
-        # trulens_measures = TruLensMeasures()
-        # tru_recorder = TruCustomApp(self._multi_modal_llm.complete,
-        #                 app_id = 'Decluttr v2',
-        #                 # methods_to_instrument=methods_to_instrument,
-        #                 feedbacks = [trulens_measures.f_qa_relevance])
-
-        # You can also modify how the formatted_prompt is created or how the response is handled.
-        # For this example, we'll just call the base class implementation and return its result.
-        formatted_prompt = self._prompt.format(llm=self._multi_modal_llm, **kwargs)
-        print('Custom formatted prompt:', formatted_prompt)
-
-        response = self._multi_modal_llm.complete(
-            formatted_prompt, image_documents=self._image_documents
-        )
-
-        print('Gemini response:', response.text)
-
-        # Parse the output as per the base class logic.
-        response_parsed = self._output_parser.parse(response.text)
-
-        print('Gemini response parsed:', response_parsed)
-
-        return response_parsed
 
 class GeminiService:
     def __init__(self):
@@ -126,9 +83,6 @@ class GeminiService:
         response: ItemDescribeResponse = llm_program()
         return response
         
-       
-
-    # @instrument
     def get_image_description(self, image: Image) -> ItemDescribeResponse:
 
         trulens_measures = TruLensMeasures()
