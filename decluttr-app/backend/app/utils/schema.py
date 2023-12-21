@@ -1,5 +1,5 @@
 from typing import List, Literal
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, Json
 
 class Item(BaseModel):
     """Data model for an Item."""
@@ -19,4 +19,11 @@ class ItemDescribeRequest(BaseModel):
 
 class ItemDescribeResponse(BaseModel):
     item: Item
+    error_message: str = Field(default="")
+
+class ItemRecordRequest(BaseModel):
+    data: Json
+
+class ItemRecordResponse(BaseModel):
+    data: str
     error_message: str = Field(default="")
