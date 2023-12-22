@@ -10,7 +10,7 @@ import os
 from supabase import create_client, Client
 
 from trulens_eval.tru_custom_app import instrument
-from trulens_eval import TruCustomApp
+from trulens_eval import TruBasicApp, TruCustomApp
 from app.api.services.trulens_service import TruLensMeasures
 
 # prompt_template_str = """\
@@ -68,7 +68,7 @@ class GeminiService:
 
 
     @instrument   
-    def _get_image_description_with_prompt(self, prompt_template: str, image_document: ImageDocument) -> ItemDescribeResponse:
+    def get_image_description_with_prompt(self, prompt_template: str, image_document: ImageDocument) -> ItemDescribeResponse:
            
         llm_program = MultiModalLLMCompletionProgram.from_defaults(
             output_parser=PydanticOutputParser(ItemDescribeResponse),
@@ -84,9 +84,8 @@ class GeminiService:
     def get_image_description(self, image: Image) -> ItemDescribeResponse:
 
         trulens_measures = TruLensMeasures()
-        tru_recorder = TruCustomApp(self,
+        tru_recorder = TruBasicApp(self.get_image_description_with_prompt,
                         app_id = 'Decluttr v3',
-                        # methods_to_instrument=methods_to_instrument,
                         feedbacks = [trulens_measures.f_qa_relevance])
 
         #ImageDocument
@@ -94,7 +93,8 @@ class GeminiService:
         image_document = CustomImageDocument(image=image.data)
 
         with tru_recorder as recording:
-            response = self._get_image_description_with_prompt(prompt_template_str, image_document)
+            #response = self._get_image_description_with_prompt(prompt_template_str, image_document)
+            response = tru_recorder.app(prompt_template_str, image_document)
 
         # tru_record = None
         # if len(recording.records) > 0:
