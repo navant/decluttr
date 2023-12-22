@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
-import supabase
-from app.utils.schema import ItemDescribeRequest, ItemRecordRequest
+from app.utils.schema import ItemDescribeRequest, Item
 from app.api.services.gemini_service import GeminiService
 from app.api.services.trulens_service import TruLensMeasures
 from app.api.services.supabase_service import SupabaseService
@@ -29,10 +28,13 @@ async def describe_item(request: ItemDescribeRequest, service:GeminiService = De
 
 
 @r.post("/record")
-async def record_item(request: ItemRecordRequest, service:SupabaseService = Depends(SupabaseService)):
+async def record_item(request: Item, service:SupabaseService = Depends(SupabaseService)):
     
     print('--------------call supabase service----------------------')
-    itemRecordResponse = service.record_item(request.data)
+    print(request)
+    itemRecordResponse = service.record_item(request)
+
+    print('itemRecordResponse:', itemRecordResponse)
 
     if itemRecordResponse.error_message:
         raise HTTPException(

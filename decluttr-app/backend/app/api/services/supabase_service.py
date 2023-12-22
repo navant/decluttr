@@ -1,6 +1,4 @@
-from io import BytesIO
-import json
-from app.utils.schema import  ItemRecordResponse
+from app.utils.schema import  ItemRecordResponse, Item
 import os
 from supabase import create_client, Client
 
@@ -17,10 +15,11 @@ class SupabaseService:
         self.supabase: Client = create_client(url, key)
 
   
-    def record_item(self, data: json) -> ItemRecordResponse:
+    def record_item(self, item: Item) -> ItemRecordResponse:
        
-        res, count = self.supabase.table('responses').insert({"response": data}).execute()
+        res, count = self.supabase.table('responses').insert({"response": item.model_dump()}).execute()
 
-        print('data: ', data)
-        print('res', res)
-        return res
+        print("Result, count:",  res, count)
+
+        item_record_response = ItemRecordResponse(data="TODO: improve return datatype" )
+        return item_record_response
