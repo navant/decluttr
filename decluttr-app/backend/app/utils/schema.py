@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 class Item(BaseModel):
     def __json__(self):
         # Return a dictionary representation of the object
-        return {"category": self.category, "title": self.title}
+        return {"category": self.category,"subcategory":self.subcategories, "title": self.title,"description":self.description,"condition": self.condition}
     
     """Data model for an Item."""
 

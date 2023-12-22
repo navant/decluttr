@@ -99,7 +99,7 @@ class GeminiService:
         # tru_record = None
         # if len(recording.records) > 0:
         #     tru_record = recording.records[0]
-        data, count = self.supabase.table('responses').insert({"id": 23, "response": response.item.__json__()}).execute()
+        data, count = self.supabase.table('responses').insert({"response": response.item.__json__()}).execute()
 
         print('response: ', response)
         return response
