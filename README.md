@@ -15,7 +15,7 @@ In its most basic version, it uses Google Gemini Pro Vision to recognize and des
 # Tech Stack  
   
 React front-end  
-FastAPI Python backend  
+FastAPI Python backend  (https://fastapi.tiangolo.com/)  
 Llamaindex for LLM interactions in python  (https://docs.llamaindex.ai/en/stable/)  
 TruLens for LLMOps (https://www.trulens.org/)   
   
@@ -25,7 +25,7 @@ The app is currently only available for local deployment
 
 ## How to install locally
 
-(0) Install docker desktop 
+(0) Install docker desktop (https://docs.docker.com/desktop/install/windows-install/)
 
 (1) clone the repository
 ```git clone https://github.com/navant/decluttr```
@@ -38,10 +38,12 @@ This will download the required container image and install dependencies.
   
 create an .env file with your secrets (/workspaces/decluttr/decluttr-app/backend/.env)  
   
+```
 GOOGLE_API_KEY = "..."  
 OPENAI_API_KEY = '...'    
 SUPABASE_URL = '...'  
-SUPABASE_KEY = '...'  
+SUPABASE_KEY = '...'
+```
   
 follow isntructions in decluttr-app/backend/README.md  
   
