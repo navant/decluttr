@@ -19,7 +19,7 @@ class SupabaseService:
   
     def record_item(self, data: json) -> ItemRecordResponse:
        
-        res, count = self.supabase.table('responses').insert({"id": 4, "response": "response.item"}).execute()
+        res, count = self.supabase.table('responses').insert({"response": data}).execute()
 
         print('data: ', data)
         print('res', res)
