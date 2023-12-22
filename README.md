@@ -30,8 +30,10 @@ The app is currently only available for local deployment
 (1) clone the repository
 ```git clone https://github.com/navant/decluttr```
 
-(2) If you use Vscode and have docker installed on your machine, install the dev containers extension (https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) 
-Open the repo folder then select operation "Dev Containers: Re-open in dev container" (access commands using CTRL-Shift P)
+(2) If you use Vscode and have docker installed on your machine, install the dev containers extension   
+(https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) 
+Open the repo folder then select operation "Dev Containers: Re-open in dev container"   
+(access commands using CTRL-Shift P)  
 This will download the required container image and install dependencies.
 
 (3) Start the backend:  
