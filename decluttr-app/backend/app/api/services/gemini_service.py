@@ -7,7 +7,7 @@ from io import BytesIO
 from app.utils.schema import Item, Image, ItemDescribeResponse
 import google.generativeai as genai
 import os
-# from supabase import create_client, Client
+from supabase import create_client, Client
 
 from trulens_eval.tru_custom_app import instrument
 from trulens_eval import TruCustomApp
@@ -61,10 +61,10 @@ class GeminiService:
             api_key=GOOGLE_API_KEY, model_name="models/gemini-pro-vision"
         )
 
-        # # Supabase Initialization
-        # url: str = os.environ.get("SUPABASE_URL")
-        # key: str = os.environ.get("SUPABASE_KEY")
-        # self.supabase: Client = create_client(url, key)
+        # Supabase Initialization
+        url: str = os.environ.get("SUPABASE_URL")
+        key: str = os.environ.get("SUPABASE_KEY")
+        self.supabase: Client = create_client(url, key)
 
 
     @instrument   
@@ -99,7 +99,7 @@ class GeminiService:
         # tru_record = None
         # if len(recording.records) > 0:
         #     tru_record = recording.records[0]
-        # data, count = self.supabase.table('responses').insert({"id": 2, "response": "response_test_desc"}).execute()
+        data, count = self.supabase.table('responses').insert({"id": 23, "response": response.item.__json__()}).execute()
 
         print('response: ', response)
         return response
