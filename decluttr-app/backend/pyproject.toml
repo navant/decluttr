@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "llamaindex-fastapi-streaming"
+name = "decluttr-app/backend"
 version = "0.1.0"
 description = ""
-authors = ["Marcus Schiesser <mail@marcusschiesser.de>"]
+authors = ["Isabelle <isisdesade@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
